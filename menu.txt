@@ -1,0 +1,21 @@
+home
+
+onderzoeken
+  > face req
+  > gestures
+  > UI/UX
+  > voice
+  > overig
+    > eye tracking
+    > perspectief
+    > gebruik
+
+architectuur
+
+interface design
+
+projectdocumentatie
+  > concept?
+  > Kinect
+  > Leap Motion
+  > Server

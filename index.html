@@ -8,8 +8,12 @@
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.16/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.16/angular-route.js"></script>
+    <script src="app.js"></script>
   </head>
-  <body>
+  <body ng-app="mirror-docs">
 
   <section class="page-header">
     <h1 class="project-name">Documentatie mirror</h1>
@@ -23,30 +27,30 @@
   <div class="wrapper">
   <nav>
     <ul>
-      <li><a href="index.html">Home</a></li>
+      <li><a href="#/">Home</a></li>
       <li><a href="#">Onderzoeken</a></li>
       <li><a href="#">Architectuur</a></li>
     </ul>
     <br />
     <b>Documentatie</b>
     <ul>
-      <li><a href="pages/project.html">Project</a></li>
-      <li><a href="pages/product.html">Product</a></li>
+      <li><a href="#/docs/project">Project</a></li>
+      <li><a href="#/docs/product">Product</a></li>
     </ul>
     <br />
     <b>Concepten</b>
     <ul>
-      <li><a href="pages/clothing.html">Clothing</a></li>
-      <li><a href="pages/fitness.html">Fitness</a></li>
-      <li><a href="pages/good_morning.html">Good Morning</a></li>
-      <li><a href="pages/kapper.html">Kapper</a></li>
-      <li><a href="pages/hub.html">Hub</a></li>
+      <li><a href="#/concepts/clothing">Clothing</a></li>
+      <li><a href="#/concepts/fitness">Fitness</a></li>
+      <li><a href="#/concepts/good-morning">Good Morning</a></li>
+      <li><a href="#/concepts/kapper">Kapper</a></li>
+      <li><a href="#/concepts/hub">Hub</a></li>
     </ul>
     <br />
     <b>Kinect</b>
     <ul>
-      <li><a href="pages/kinect/waarom.html">Waarom?</a></li>
-      <li><a href="pages/kinect/hardware_setup.html">Hardware setup</a></li>
+      <li><a href="#/kinect/waarom">Waarom?</a></li>
+      <li><a href="#/kinect/hardware-setup">Hardware setup</a></li>
       <li>Bevindingen</li>
       <li>Gestures</li>
       <li>Voice</li>
@@ -54,38 +58,20 @@
     <br />
     <b>Leap Motion</b>
     <ul>
-      <li><a href="pages/leapmotion/waarom.html">Waarom?</a></li>
+      <li><a href="#leap/waarom">Waarom?</a></li>
       <li>Hoe werkt het?</li>
       <li>Bevindingen</li>
     </ul>
     <br />
     <b>UI/UX</b>
     <ul>
-    	<li><a href="pages/uiux/testopzet.html">Testopzet</a></li>
+    	<li><a href="#/uiux/testopzet">Testopzet</a></li>
     </ul>
   </nav>
 
   <section class="main-content">
-    <h2><a id="wat-is-dit" class="anchor" href="#wat-is-dit" aria-hidden="false"><span class="octicon octicon-link"></span></a>Wat is dit?</h2>
-    <hr />
 
-    <p>Welkom op de documentatie van Opus. Hier vind je alle informatie die je nodig hebt om met deze spiegel aan de slag te gaan.</p>
-
-    <p>Opus is een innoverend project van Delta FHICT. Je kunt met behulp van je stem of gestures de informatie op de spiegel manipuleren.</p>
-
-    <h2><a id="aan-de-slag" class="anchor" href="#aan-de-slag" aria-hidden="true"><span class="octicon octicon-link"></span></a>Aan de slag</h2>
-    <hr />
-
-    <p>Om aan de slag te gaan met dit project, is het vanzelfsprekend handig om het project lokaal te hebben staan. Het makkelijkst is om het project binnen te halen via de terminal:</p>
-
-    <pre><code>$ cd jouw_repository_root # Vul hier de map in, waar je het project op wilt slaan.<br />$ git clone https://github.com/deltafhict/mirror-server.git # voor de server.<br />$ git clone https://github.com/deltafhict/mirror-interactions.git # voor de interactions.</code></pre>
-
-    <p>Je kunt natuurlijk ook gebruik maken van de Github-client (beschikbaar voor <a href="https://mac.github.com">Mac OS X</a> &amp; <a href="https://windows.github.com">Windows</a>) om de repository te clonen.</p>
-
-    <h2><a id="contact" class="anchor" href="#contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contact</h2>
-    <hr />
-
-    <p>Mocht je ergens niet uitkomen, dan kun je contact opnemen met <a href="https://github.com/BasThomas" class="user-mention">@BasThomas</a> of <a href="https://github.com/DaanOerlemans" class="user-mention">@DaanOerlemans</a>.</p>
+    <div ng-view></div>
 
     <footer class="site-footer">
       <span class="site-footer-owner"><a href="https://github.com/deltafhict/mirror-docs">mirror-docs</a> wordt onderhouden door <a href="https://github.com/deltafhict">Delta FHICT</a>.</span>

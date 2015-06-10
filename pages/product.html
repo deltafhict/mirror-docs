@@ -1,141 +1,64 @@
-<!DOCTYPE html>
-  <html lang="en-us">
-  <head>
-    <meta charset="UTF-8">
-    <title>Documentatie mirror | Delta FHICT</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="../stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="../stylesheets/github-light.css" media="screen">
-  </head>
-  <body>
+<h1><a id="productdocumentatie" class="anchor" href="#productdocumentatie" aria-hidden="false"><span class="octicon octicon-link"></span></a>Productdocumentatie</h1>
+<hr />
 
-  <section class="page-header">
-    <h1 class="project-name">Documentatie mirror</h1>
-    <h2 class="project-tagline"></h2>
-    <a href="https://github.com/deltafhict/mirror-server" class="btn">Bekijk Mirror server</a>
-    <a href="https://github.com/deltafhict/mirror-interactions" class="btn">Bekijk Mirror interactions</a>
-    <!--<a href="https://github.com/deltafhict/mirror-docs/zipball/master" class="btn">Download .zip</a>
-    <a href="https://github.com/deltafhict/mirror-docs/tarball/master" class="btn">Download .tar.gz</a>-->
-  </section>
-
-  <nav>
+<ul>
+  <li>
+    <a href="#gemaakte-ontwerpen">Gemaakte ontwerpen</a>
     <ul>
-      <li><a href="../index.html">Home</a></li>
-      <li><a href="#">Onderzoeken</a></li>
-      <li><a href="#">Architectuur</a></li>
+      <li><a href="#systeemarchitectuur">Systeemarchitectuur</a></li>
+      <li><a href="#communicatieprotocol">Communicatieprotocol</a></li>
     </ul>
-    <br />
-    <b>Documentatie</b>
-    <ul>
-      <li><a href="project.html">Project</a></li>
-      <li><a href="product.html">Product</a></li>
-    </ul>
-    <br />
-    <b>Concepten</b>
-    <ul>
-      <li><a href="./clothing.html">Clothing</a></li>
-      <li><a href="./fitness.html">Fitness</a></li>
-      <li><a href="./good_morning.html">Good Morning</a></li>
-      <li><a href="./kapper.html">Kapper</a></li>
-      <li><a href="./hub.html">Hub</a></li>
-    </ul>
-    <br />
-    <b>Kinect</b>
-    <ul>
-      <li><a href="kinect/waarom.html">Waarom?</a></li>
-      <li><a href="kinect/hardware_setup.html">Hardware setup</a></li>
-      <li><a href="#">Bevindingen</a></li>
-      <li><a href="#">Gestures</a></li>
-      <li><a href="#">Voice</a></li>
-    </ul>
-    <br />
-    <b>UI/UX</b>
-    <ul>
-      <li><a href="uiux/testopzet.html">Testopzet</a></li>
-    </ul>
-    <br />
-    <b>Leap Motion</b>
-    <ul>
-      <li><a href="leapmotion/waarom.html">Waarom?</a></li>
-      <li>Hoe werkt het?</li>
-      <li>Bevindingen</li>
-    </ul>
-  </nav>
+  </li>
+  <li><a href="#codedocumentatie">Codedocumentatie</a></li>
+  <li><a href="#hardwaredocumentatie">Hardwaredocumentatie</a></li>
+  <li><a href="#documentatie-van-deelonderzoeken">Documentatie van de deelonderzoeken</a></li>
+</ul>
 
-  <section class="main-content">
-    <h1><a id="productdocumentatie" class="anchor" href="#productdocumentatie" aria-hidden="false"><span class="octicon octicon-link"></span></a>Productdocumentatie</h1>
-    <hr />
+<h2><a id="gemaakte-ontwerpen" class="anchor" href="#gemaakte-ontwerpen" aria-hidden="false"><span class="octicon octicon-link"></span></a>Gemaakte ontwerpen</h2>
+<hr />
 
-    <ul>
-      <li>
-        <a href="#gemaakte-ontwerpen">Gemaakte ontwerpen</a>
-        <ul>
-          <li><a href="#systeemarchitectuur">Systeemarchitectuur</a></li>
-          <li><a href="#communicatieprotocol">Communicatieprotocol</a></li>
-        </ul>
-      </li>
-      <li><a href="#codedocumentatie">Codedocumentatie</a></li>
-      <li><a href="#hardwaredocumentatie">Hardwaredocumentatie</a></li>
-      <li><a href="#documentatie-van-deelonderzoeken">Documentatie van de deelonderzoeken</a></li>
-    </ul>
+<h3><a id="systeemarchitectuur" class="anchor" href="#systeemarchitectuur" aria-hidden="false"><span class="octicon octicon-link"></span></a>Systeemarchitectuur</h3>
+<p>De <i>view</i> is het scherm zoals het gepresenteerd wordt aan gebruiker, de <i>server</i> is waar alle data binnenkomt en verwerkt wordt (tevens wordt hier een selectie van deze data bewaard in de database) en alle sensoren die er onder hangen voorzien de server van input van de gebruiker.
+Omdat alles op hetzelfde punt binnenkomt bij de server, is het makkelijk om deze uit te breiden met extra sensoren.
+Omdat het systeem netjes verdeeld is in aparte delen, is het makkelijker om elk deel op zich te testen. Eén deel werkt onafhankelijk van de anderen en kan dus apart getest worden. Om dezelfde reden is het makkelijker om delen te vervangen of eventueel compleet weg te halen.
+</p>
+<img src="../images/architectuur.png" class="image" />
 
-    <h2><a id="gemaakte-ontwerpen" class="anchor" href="#gemaakte-ontwerpen" aria-hidden="false"><span class="octicon octicon-link"></span></a>Gemaakte ontwerpen</h2>
-    <hr />
+<h3><a id="communicatieprotocol" class="anchor" href="#communicatieprotocol" aria-hidden="false"><span class="octicon octicon-link"></span></a>Communicatieprotocol</h3>
+<p>Alle communicatie tussen de sensoren en de server zal in JSON gebeuren. Hierbij wordt gebruik gemaakt van websockets om de JSON naar de server te sturen.
+Het default adres van de websocket waarnaar de JSON gestuurd moet worden is <code>ws://127.0.0.1:1337</code>.
+De server draait (eveneens) op <code>127.0.0.1</code>, dit omdat de sensoren aan dezelfde PC gekoppeld zijn als de server.
+Hieronder zie je een voorbeeld van wat de sensoren naar de server sturen:
+</p>
+<pre><code>{
+    "app": "application name",
+    "type": "voice | gesture",
+    "action": "open | close",
+    "person": "unknown | personId",
+    "appointment": {
+        "title": "titel of appointment",
+        "desc": "description of appointment",
+        "datetime": 1432105259
+    }
+}</pre></code>
 
-    <h3><a id="systeemarchitectuur" class="anchor" href="#systeemarchitectuur" aria-hidden="false"><span class="octicon octicon-link"></span></a>Systeemarchitectuur</h3>
-    <p>De <i>view</i> is het scherm zoals het gepresenteerd wordt aan gebruiker, de <i>server</i> is waar alle data binnenkomt en verwerkt wordt (tevens wordt hier een selectie van deze data bewaard in de database) en alle sensoren die er onder hangen voorzien de server van input van de gebruiker.
-    Omdat alles op hetzelfde punt binnenkomt bij de server, is het makkelijk om deze uit te breiden met extra sensoren.
-    Omdat het systeem netjes verdeeld is in aparte delen, is het makkelijker om elk deel op zich te testen. Eén deel werkt onafhankelijk van de anderen en kan dus apart getest worden. Om dezelfde reden is het makkelijker om delen te vervangen of eventueel compleet weg te halen.
-    </p>
-    <img src="../images/architectuur.png" class="image" />
+<h2><a id="codedocumentatie" class="anchor" href="#codedocumentatie" aria-hidden="false"><span class="octicon octicon-link"></span></a>Documentatie van code</h2>
+<hr  />
 
-    <h3><a id="communicatieprotocol" class="anchor" href="#communicatieprotocol" aria-hidden="false"><span class="octicon octicon-link"></span></a>Communicatieprotocol</h3>
-    <p>Alle communicatie tussen de sensoren en de server zal in JSON gebeuren. Hierbij wordt gebruik gemaakt van websockets om de JSON naar de server te sturen.
-    Het default adres van de websocket waarnaar de JSON gestuurd moet worden is <code>ws://127.0.0.1:1337</code>.
-    De server draait (eveneens) op <code>127.0.0.1</code>, dit omdat de sensoren aan dezelfde PC gekoppeld zijn als de server.
-    Hieronder zie je een voorbeeld van wat de sensoren naar de server sturen:
-    </p>
-    <pre><code>{
-        "app": "application name",
-        "type": "voice | gesture",
-        "action": "open | close",
-        "person": "unknown | personId",
-        "appointment": {
-            "title": "titel of appointment",
-            "desc": "description of appointment",
-            "datetime": 1432105259
-        }
-    }</pre></code>
+<p>Op plekken waar het nuttig is in de code zelf commentaar toegevoegd. Documentatie (in de vorm van xml docstrings) is ook toegevoegd. In principe heeft elke methode zijn eigen xml docstring die uitlegt wat de methode doet en waarom. Overige code heeft exra commentaar tussen de regels door om uit te leggen wat de code doet en waarom, indien dit nog niet duidelijk genoeg is aan de hand van de code zelf. Wij streven ernaar om code zo te schrijven dat er zo min mogelijk extra commentaar nodig is om het uit te leggen.</p>
 
-    <h2><a id="codedocumentatie" class="anchor" href="#codedocumentatie" aria-hidden="false"><span class="octicon octicon-link"></span></a>Documentatie van code</h2>
-    <hr  />
+<h2><a id="hardwaredocumentatie" class="anchor" href="#hardwaredocumentatie" aria-hidden="false"><span class="octicon octicon-link"></span></a>Hardwaredocumentatie</h2>
+<hr  />
 
-    <p>Op plekken waar het nuttig is in de code zelf commentaar toegevoegd. Documentatie (in de vorm van xml docstrings) is ook toegevoegd. In principe heeft elke methode zijn eigen xml docstring die uitlegt wat de methode doet en waarom. Overige code heeft exra commentaar tussen de regels door om uit te leggen wat de code doet en waarom, indien dit nog niet duidelijk genoeg is aan de hand van de code zelf. Wij streven ernaar om code zo te schrijven dat er zo min mogelijk extra commentaar nodig is om het uit te leggen.</p>
+<p>De gebruikte hardware (en ook sommige andere systeemcomponenten) hebben een eigen map met bijhorende informatie, zoals:
+<ul>
+  <li>Keuzeverantwoording</li>
+  <li>Relevant onderzoek</li>
+  <li>Problemen &amp; oplossingen</li>
+</ul>
+Deze informatie is niet inbegrepen in dit document, maar staat apart vermeld.
+</p>
 
-    <h2><a id="hardwaredocumentatie" class="anchor" href="#hardwaredocumentatie" aria-hidden="false"><span class="octicon octicon-link"></span></a>Hardwaredocumentatie</h2>
-    <hr  />
-
-    <p>De gebruikte hardware (en ook sommige andere systeemcomponenten) hebben een eigen map met bijhorende informatie, zoals:
-    <ul>
-      <li>Keuzeverantwoording</li>
-      <li>Relevant onderzoek</li>
-      <li>Problemen &amp; oplossingen</li>
-    </ul>
-    Deze informatie is niet inbegrepen in dit document, maar staat apart vermeld.
-    </p>
-
-    <h2><a id="documentatie-van-deelonderzoeken" class="anchor" href="#documentatie-van-deelonderzoeken" aria-hidden="false"><span class="octicon octicon-link"></span></a>Documentatie van deelonderzoeken</h2>
-    <hr  />
-    <p>Zoals hierboven al uitgelegd is, zijn deelonderzoeken zijn apart bijgesloten bij elk systeemcomponent waar een deelonderzoek voor gedaan is.</p>
-
-    <footer class="site-footer">
-      <span class="site-footer-owner"><a href="https://github.com/deltafhict/mirror-docs">mirror-docs</a> wordt onderhouden door <a href="https://github.com/deltafhict">Delta FHICT</a>.</span>
-
-      <span class="site-footer-credits">Deze pagina is gegenereerd door <a href="https://pages.github.com">GitHub Pages</a> met behulp van het <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> door <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
-    </footer>
-  </section>
-
-  </body>
-</html>
+<h2><a id="documentatie-van-deelonderzoeken" class="anchor" href="#documentatie-van-deelonderzoeken" aria-hidden="false"><span class="octicon octicon-link"></span></a>Documentatie van deelonderzoeken</h2>
+<hr  />
+<p>Zoals hierboven al uitgelegd is, zijn deelonderzoeken zijn apart bijgesloten bij elk systeemcomponent waar een deelonderzoek voor gedaan is.</p>

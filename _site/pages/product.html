@@ -1,0 +1,64 @@
+<h1><a id="productdocumentatie" class="anchor" href="#productdocumentatie" aria-hidden="false"><span class="octicon octicon-link"></span></a>Productdocumentatie</h1>
+<hr />
+
+<ul>
+  <li>
+    <a href="#gemaakte-ontwerpen">Gemaakte ontwerpen</a>
+    <ul>
+      <li><a href="#systeemarchitectuur">Systeemarchitectuur</a></li>
+      <li><a href="#communicatieprotocol">Communicatieprotocol</a></li>
+    </ul>
+  </li>
+  <li><a href="#codedocumentatie">Codedocumentatie</a></li>
+  <li><a href="#hardwaredocumentatie">Hardwaredocumentatie</a></li>
+  <li><a href="#documentatie-van-deelonderzoeken">Documentatie van de deelonderzoeken</a></li>
+</ul>
+
+<h2><a id="gemaakte-ontwerpen" class="anchor" href="#gemaakte-ontwerpen" aria-hidden="false"><span class="octicon octicon-link"></span></a>Gemaakte ontwerpen</h2>
+<hr />
+
+<h3><a id="systeemarchitectuur" class="anchor" href="#systeemarchitectuur" aria-hidden="false"><span class="octicon octicon-link"></span></a>Systeemarchitectuur</h3>
+<p>De <i>view</i> is het scherm zoals het gepresenteerd wordt aan gebruiker, de <i>server</i> is waar alle data binnenkomt en verwerkt wordt (tevens wordt hier een selectie van deze data bewaard in de database) en alle sensoren die er onder hangen voorzien de server van input van de gebruiker.
+Omdat alles op hetzelfde punt binnenkomt bij de server, is het makkelijk om deze uit te breiden met extra sensoren.
+Omdat het systeem netjes verdeeld is in aparte delen, is het makkelijker om elk deel op zich te testen. Eén deel werkt onafhankelijk van de anderen en kan dus apart getest worden. Om dezelfde reden is het makkelijker om delen te vervangen of eventueel compleet weg te halen.
+</p>
+<img src="images/architectuur.png" class="image" />
+
+<h3><a id="communicatieprotocol" class="anchor" href="#communicatieprotocol" aria-hidden="false"><span class="octicon octicon-link"></span></a>Communicatieprotocol</h3>
+<p>Alle communicatie tussen de sensoren en de server zal in JSON gebeuren. Hierbij wordt gebruik gemaakt van websockets om de JSON naar de server te sturen.
+Het default adres van de websocket waarnaar de JSON gestuurd moet worden is <code>ws://127.0.0.1:1337</code>.
+De server draait (eveneens) op <code>127.0.0.1</code>, dit omdat de sensoren aan dezelfde PC gekoppeld zijn als de server.
+Hieronder zie je een voorbeeld van wat de sensoren naar de server sturen:
+</p>
+<pre><code>{
+    "app": "application name",
+    "type": "voice | gesture",
+    "action": "open | close",
+    "person": "unknown | personId",
+    "appointment": {
+        "title": "titel of appointment",
+        "desc": "description of appointment",
+        "datetime": 1432105259
+    }
+}</pre></code>
+
+<h2><a id="codedocumentatie" class="anchor" href="#codedocumentatie" aria-hidden="false"><span class="octicon octicon-link"></span></a>Documentatie van code</h2>
+<hr  />
+
+<p>Op plekken waar het nuttig is in de code zelf commentaar toegevoegd. Documentatie (in de vorm van xml docstrings) is ook toegevoegd. In principe heeft elke methode zijn eigen xml docstring die uitlegt wat de methode doet en waarom. Overige code heeft exra commentaar tussen de regels door om uit te leggen wat de code doet en waarom, indien dit nog niet duidelijk genoeg is aan de hand van de code zelf. Wij streven ernaar om code zo te schrijven dat er zo min mogelijk extra commentaar nodig is om het uit te leggen.</p>
+
+<h2><a id="hardwaredocumentatie" class="anchor" href="#hardwaredocumentatie" aria-hidden="false"><span class="octicon octicon-link"></span></a>Hardwaredocumentatie</h2>
+<hr  />
+
+<p>De gebruikte hardware (en ook sommige andere systeemcomponenten) hebben een eigen map met bijhorende informatie, zoals:
+<ul>
+  <li>Keuzeverantwoording</li>
+  <li>Relevant onderzoek</li>
+  <li>Problemen &amp; oplossingen</li>
+</ul>
+Deze informatie is niet inbegrepen in dit document, maar staat apart vermeld.
+</p>
+
+<h2><a id="documentatie-van-deelonderzoeken" class="anchor" href="#documentatie-van-deelonderzoeken" aria-hidden="false"><span class="octicon octicon-link"></span></a>Documentatie van deelonderzoeken</h2>
+<hr  />
+<p>Zoals hierboven al uitgelegd is, zijn deelonderzoeken zijn apart bijgesloten bij elk systeemcomponent waar een deelonderzoek voor gedaan is.</p>

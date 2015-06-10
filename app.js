@@ -2,10 +2,6 @@ var app = angular.module('mirror-docs', [
 	'ngRoute'
 ]);
 
-app.controller('Ctrl', function($scope) {
-	$scope.msg = 'testmsg woop woop';
-});
-
 app.config(function($routeProvider) {
 	$routeProvider
 	.when('/', {

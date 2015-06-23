@@ -22,7 +22,9 @@ $(document).ready(function(){
     });
     
     //Handling the sub-menu's
-    $("nav ul li").click(function(){
-        $(this).children('.submenu').slideToggle('slow');
+    $(document).on('click', 'nav ul li', function(event){
+        if (!$(event.target).closest('.submenu').length){
+            $(this).children('.submenu').slideToggle('slow');
+        }
     });
 });

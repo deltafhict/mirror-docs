@@ -24,6 +24,8 @@ $(document).ready(function(){
     //Handling the sub-menu's
     $(document).on('click', 'nav ul li', function(event){
         if (!$(event.target).closest('.submenu').length){
+            var currentSub = $(this).closest('li').next('.submenu');
+            $('.submenu').not(currentSub).slideUp('slow');
             $(this).children('.submenu').slideToggle('slow');
         }
     });

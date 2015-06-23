@@ -1,0 +1,93 @@
+<h1>Voice</h1>
+
+<h3>Algemeen</h3>
+<p>Speech recognition is ondersteund in de volgende talen:</p>
+<table>
+	<thead style="background-color: #159961; color: white;"><tr><td>Locale</td><td>Taal</td></tr></thead>
+	<tr><td>Australia</td><td>English</td></tr>
+	<tr><td>Brazil</td><td>Portuguese</td></tr>
+	<tr><td>Canada</td><td>English</td></tr>
+	<tr><td>Canada</td><td>French</td></tr>
+	<tr><td>France</td><td>French</td></tr>
+	<tr><td>Germany</td><td>German</td></tr>
+	<tr><td>Ireland</td><td>English</td></tr>
+	<tr><td>Italy</td><td>Italian</td></tr>
+	<tr><td>Japan</td><td>Japanese</td></tr>
+	<tr><td>Mexico</td><td>Spanish</td></tr>
+	<tr><td>New Zealand</td><td>English</td></tr>
+	<tr><td>Spain</td><td>Spanish</td></tr>
+	<tr><td>Switzerland</td><td>French</td></tr>
+	<tr><td>Switzerland</td><td>German</td></tr>
+	<tr><td>United Kingdom</td><td>English</td></tr>
+	<tr><td>United States</td><td>English</td></tr>
+</table>
+
+<p>Als het lampje op de sensor groen is dan is de sensor connect en klaar voor gebruik.<br />
+	Tips:</p>
+<ul>
+	<li>Plaats de sensor minimaal 30cm van speakers</li>
+	<li>Plaats de sensor niet direct in zonlicht</li>
+	<li>Zet de sensor niet op de console of andere elektronische apparaten</li>
+	<li>Minimaliseer omgevingsgeluiden</li>
+	<li>Zet de sensor niet in de wind</li>
+</ul>
+
+<p><a href="http://support.xbox.com/en-US/xbox-360/kinect/speech-recognition">Meer info</a></p>
+
+<sub>The part below is in English</sub>
+
+<h3>Functioning</h3>
+<p>A speech recognition engine (or speech recognizer) takes an audio stream as input and turns it into a text transcription. The speech recognition process can be thought of as having a front end and a back end.</p>
+<ul>
+	<li>The front end processes the audio stream, isolating segments of sound that are probably speech and converting them into a series of numeric values that characterize the vocal sounds in the signal.</li>
+	<li>The back end is a specialized search engine that takes the output produced by the front end and searches across three databases: an acoustic model, a lexicon, and a language model.
+		<ul>
+			<li>The acoustic model represents the acoustic sounds of a language, and can be trained to recognize the characteristics of a particular user's speech patterns and acoustic environments.</li>
+			<li>The lexicon lists a large number of the words in the language, and provides information on how to pronounce each word.</li>
+			<li>The language model represents the ways in which the words of a language are combined.</li>
+		</ul>
+	</li>
+</ul>
+
+<p>For any given segment of sound, there are many things the speaker could potentially be saying. The quality of a recognizer is determined by how good it is at refining its search, eliminating the poor matches, and selecting the more likely matches. This depends in large part on the quality of its language and acoustic models and the effectiveness of its algorithms, both for processing sound and for searching across the models.</p>
+
+<h3>Grammars</h3>
+<p>While the built-in language model of a recognizer is intended to represent a comprehensive language domain (such as everyday spoken English), a speech application will often need to process only certain utterances that have particular semantic meaning to that application. Rather than using the general purpose language model, an application should use a grammar that constrains the recognizer to listen only for speech that is meaningful to the application. This provides the following benefits:</p>
+<ul>
+	<li>Increases the accuracy of recognition</li>
+	<li>Guarantees that all recognition results are meaningful to the application</li>
+	<li>Enables the recognition engine to specify the semantic values inherent in the recognized text</li>
+</ul>
+
+<p><a href="https://msdn.microsoft.com/en-us/library/hh378337(v=office.14).aspx">Meer info</a></p>
+
+<h3>Listening</h3>
+
+<p>The trick used by Kinect is beam forming, so it can focus on specific points in the room to listen. At the same time, the audio processor is using the echo profile of the room to perform multichannel echo cancellation, so the noise coming out of the TV doesn’t mess with your voice commands. That said, there’s no way to lock out errant voice commands from your douchier friends: it’ll listen to any human being in the room. <br />
+
+<a href="http://www.geek.com/games/the-technology-behind-the-kinects-voice-recognition-is-ingenious-but-doesnt-work-very-well-1275099/">Meer info</a></p>
+
+<h3>Speech libraries</h3>
+<p>Speech recognition isn’t new. For some time, Windows developers have been connecting microphones and other hardware to their Windows machines to listen and respond to human speech. Using the System.Speech library, applications can build grammars, direct where to “listen” from, respond with semantic correctness and even take dictation with increasing accuracy and ease. Now enters the Kinect for Windows SDK with the Microsoft.Speech library—but why do we need a new Speech library?</p>
+
+<p>On a closer look, the System.Speech and Microsoft.Speech libraries appear comparable. In fact, they are a lot alike: they have the same classes, the same methods and so on. The main difference between these two libraries is that Microsoft.Speech is specifically optimized for the Kinect hardware. Although using System.Speech with the Kinect hardware or, conversely, using Microsoft.Speech with a regular microphone is possible, in both cases the results are less than optimum. (We’ll actually try this later in the article and see how it works.)</p>
+
+<p>The other major distinction between the two libraries is that as of Kinect for Windows SDK 1.6, Microsoft.Speech doesn’t support the dictation model. The recognition engine doesn’t support DictationGrammar. That means that to use the speech recognition aspect of the SDK, you must know all the spoken values and incorporate them into a fixed grammar. Although this constraint is serious, Microsoft.Speech still gives you an enormous amount of freedom to interact with users via speech.</p>
+
+<h3>Speech recognized &amp; rejected handlers</h3>
+<p>So how does the application respond when the Kinect hears something? Through events of course. Via the SpeechRecognitionEngine, I can register my application to handle several events. For this demonstration, I care about the SpeechRecognized and SpeechRecognitionRejected events. Let’s look at each in turn. <br />
+<img src="images/voice1.png" /></p>
+
+<p>This event handler is straightforward and simple. The SpeechRecognizedEventArgs provide a handle to the necessary information, such as the Result and the Confidence in the result. Confidence is an important value. It shows how confident the speech recognition engine is in its determination of what is said. Try implementing a routine like this, but don’t bother checking the Confidence. You’ll quickly see how valuable this piece of information is! Checking to ensure a certain level of Confidence helps reduce the inaccuracies that would otherwise be exposed to the user. At the beginning of this class, I created a class member variable that defines a const value for ConfidenceThreshold. This value gives the application a way to specify its level of confidence in what was spoken: 1% means that the speech recognition engine completely lacks confidence, and 100% means that it is completely confident in its determination of what was spoken. I can play with the threshold value until I get the results I’m looking for. Many factors affect the value that you set to get the results you want. To find the desired value, I generally run several tests on the use cases that the application is designed to satisfy.</p>
+
+<p>Once the speech recognition engine has met the level of confidence I require, I can use a switch case to evaluate the results to determine what the desired outcome is. In this particular application, I care about the spoken word as well as the semantic category associated with it. Therefore, my switch case is based on e.Result.Semantics.Value.ToString, meaning the semantic value for the word spoken. For example, if the word spoken is “gigi,” the semantic category is PEOPLE. At the end of the switch case, I get a handle to the actual spoken word by referencing e.Result.Text.</p>
+
+<p>This is only one simple example of how to use speech data. It is up to the developer to create an algorithm for the application to leverage the speech information in a meaningful way.</p>
+
+<p>There are also other ways to write a grammar. For example, you can create a grammar that understands “put * {circle, square, triangle} there,” with the * representing nonsignificant words such as “a,” “the” and so on. If you plan your grammar carefully and thoroughly, you can achieve a rich vocabulary of understanding, providing a user interface that is natural and appealing. I recommend working with some of your target users to get a feeling for the vocabulary they use. Making intuitive, natural grammars based on domain-specific language can significantly enhance your application. A poorly constructed grammar can quickly frustrate your users, causing objects to be thrown at the computer and darts tossed at your effigy! Think about a time when you were interacting with one of those computer agents over the telephone. You know what you want and what you would logically say to a human, but the telephone just keeps saying, “I’m sorry. I did not understand.…” Make sure you don’t create an aggravating application. Take the time to think through what makes sense for your application and your users. Put yourself in the shoes of your users. Use terms and phrases that are consistent with their vernacular, not yours. I also highly recommend that you put your application through user acceptance testing to validate your choices.</p>
+
+<p>But what about the SpeechRecognitionRejected event? This event occurs when the speech recognition engine receives input that doesn’t relate to any of the grammars loaded. If the internal confidence threshold in the Windows Registry isn’t met, the SpeechRecognitionRejected event is raised. Keep in mind, however, that your application shouldn’t refer to or change this Registry setting. Applications have access to the Results.Confidence value for local use. For this demonstration, I created the simple handler<br />
+<img src="images/voice2.png" /></p>
+
+<p>Now you know how to set up a grammar, load the grammar into the speech recognition engine and enable the Kinect to begin listening and responding to various events. You can even have multiple grammars loaded into the speech recognition engine consecutively that load and unload throughout the life of your application. Such a variety of grammars gives your application rich and contextually sensitive vocabularies that reflect humanistic speaking patterns. But what if you want even more sophisticated speech recognition in your application? What about a scenario in which the application needs to handle speech that can’t be defined at design time? With System.Speech, I could use DictationGrammar to facilitate such requirements. But the Microsoft.Speech library doesn’t support DictationGrammar. What’s a developer to do?<br />
+<a href="https://msdn.microsoft.com/en-us/magazine/jj884371.aspx">More info</a></p>

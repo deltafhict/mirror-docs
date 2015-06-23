@@ -13,6 +13,9 @@ app.config(function($routeProvider) {
 	.when('/kinect/hardware-setup', {
 		templateUrl: 'pages/kinect/hardware_setup.html'
 	})
+	.when('/kinect/bevindingen', {
+		templateUrl: 'pages/kinect/bevindingen.html'
+	})
 	.when('/leap/waarom', {
 		templateUrl: 'pages/leapmotion/waarom.html'
 	})

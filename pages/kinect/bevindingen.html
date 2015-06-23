@@ -1,0 +1,29 @@
+<h1>Bevindingen</h1>
+<hr />
+
+<h3>Problemen &amp; bijbehorende oplossingen tijdens het gebruikt van Kinect</h3>
+<ul>
+	<li>Vinden en installeren van geschikte Hardware</li>
+	<li>Gesture handling met de kinect.</li>
+	<li>Spraakbesturing via Kinect</li>
+</ul>
+
+<h3>Vinden en installeren van geschikte Hardware.</h3>
+<p>
+De hardware requirements voor de Kinect v2 voor Windows zijn redelijk zwaar. In het document “Kinect - Hardware setup” staan deze uitgebreid beschreven. Om de Kinect aan de praat te krijgen hebben we de halve inventaris van de ISSD in onze handen gehad.</p>
+
+<p>In eerste instantie wouden we voor de interactive mirror gebruik maken van een “game pc” deze zouden de krachtigste computers zijn waarover we konden beschikken. Helaas beschikte deze niet over een USB 3.0 poort, hiervoor hebben we een compatibele USB 3.0 PCI-e Card besteld waarna bleek dat de Grafische kaart niet compatibel was met DirectX 11.</p>
+
+<p>Hierna hebben we het geprobeerd met een “leraren pc”, deze beschikken over zowel USB 3.0 als een geschikte grafische kaart. Na de installatie van Windows 8.1 en de Kinect SDK bleek Kinect v2 ook op deze pc niet te werken, reden hiervoor was de USB 3.0 poort die niet overweg kan met Kinect v2.
+Uiteindelijk hebben we gebruik gemaakt van een MacBook Pro Retina 15” 2012 waar we via Bootcamp Windows 8.1 op geïnstalleerd hebben.</p>
+
+<h3>Gesture handling met de Kinect.</h3>
+<p>Om de mirror te besturen door middel van gestures hebben we onderzoek gedaan naar handige/natuurlijke gestures (dit onderzoek is terug te vinden in de map onderzoeken). 
+De gekozen gestures hebben we als custom gestures gecreerd (zie het document Kinect - gestures voor meer informatie).</p>
+
+<p>Tijdens de implementatie van de gestures door middel van Kinect zijn we erachter gekomen dat de resultaten niet aansloten bij onze verwachtingen. Voor het herkennen van gestures neemt Kinect het skelet van de gebruiker als basis. Vanuit dit skelet worden dan gekeken naar armen, benen etc.. Voor de gesture toepassingen op de mirror zijn echter gestures door middel van subtiele handgebaren de beste keus. En dat is precies waar de Kinect niet optimaal mee overweg kan.</p>
+
+<p>Kinect is wel in staat om handen te herkennen en kan daarnaast zien of een hand open/dicht is en of er 1 vinger is opgestoken. Maar het is niet mogelijk om een lichte swipe gesture te herkennen. We hebben dit wel geprobeerd door middel van verschillende custom gestures (in het document Kinect - gestures kan je zien hoe we dit gedaan hebben). Het grootste probleem weer we tegenaan gelopen is dat custom gestures heel nauwkeurig nagebootst moeten worden. Hierdoor moet een gesture meerdere malen uitgevoerd worden voor deze herkend wordt, wat zeer gebruiksonvriendelijk is en irritatie opwekt.</p>
+
+<h3>Spraakbesturing via Kinect.</h3>
+<p>Om voice controle te gebruiken in combinatie met de kinect wordt gebruik gemaakt van de 2.0 SDK. Na het installeren van deze sdk blijven er een hoop errors in de code. Dit komt (na een hoop zoekwerk) doordat de voice controle nog gebruik maakt van bepaalde delen van de 1.8 SDK. Je moet dus beide SDK’s op de PC installeren!</p>

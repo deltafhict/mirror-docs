@@ -52,6 +52,15 @@ app.config(function($routeProvider) {
 	.when('/docs/project', {
 		templateUrl: 'pages/project.html'
 	})
+	.when('/docs/facerecognition', {
+		templateUrl: 'pages/research/facerecognition.html'
+	})
+	.when('/docs/eyetracking', {
+		templateUrl: 'pages/research/eyetracking.html'
+	})
+	.when('/docs/smartphone', {
+		templateUrl: 'pages/research/smartphone.html'
+	})
 	.when('/uiux/testopzet', {
 		templateUrl: 'pages/uiux/testopzet.html'
 	})

@@ -1,0 +1,63 @@
+<h1>Hoe bruikbaar is Face Recognition (Kinect 2.0) als middel om in te loggen op een systeem zoals de interactieve mirror?</h1>
+
+<h3>Hoe werkt face recognition technisch gezien?</h3>
+<p>Eerst leg ik uit de gezicht herkenning globaal gezien werkt, verder in dit hoofdstuk wordt er dieper op in gegaan.
+Het eerste wat de gezicht herkenning doet is zoeken naar een lichaam in het scherm. Wanneer die deze gedetecteerd heeft gaat hij dat lichaam tracken (volgen). </p>
+
+plaatje1....
+
+<p>Vervolgens gaat de gezicht herkenning zoeken naar een gezicht, dit kan nu veel makkelijker omdat je het lichaam tracked. Je weet dus waar het gezicht waarschijnlijk zit, en gaat daar naar op zoek en tracked daarna het gezicht.</p>
+
+plaatje2....     plaatje3....
+
+<p>Vervolgens pakt hij uit dit frame het gezicht waarna het frame door het gezicht herkenning algoritme heen gehaald word. Van dit gezicht wordt een image van 100 bij 100 gemaakt waarnaar hier vector space van gemaakt wordt. Maar dit zorgt ervoor dat er al 10.000 dimensies zijn. Hierover wordt het PCA principe gehaald om de grote aantal data te ‘reduceren’. Deze data wordt vergeleken met alle ingeladen gezichten.</p>
+
+<p>In dit hoofdstuk worden alleen de meeste interessante stukken code uitgelegd, minder interessante code is  weggelaten.</p>
+<p>De eerste stap die gemaakt word is het aanmaken van de Kinect sensor, en deze the initialiseren. De KinectSensor.GetDefault() methode haalt de default sensor op en zet deze in kinectSensor. </p>
+
+plaatje4....
+
+<p>Ook wordt een IRecognitionProcessor aangemaakt en geïnitialiseerd met een instantie van EigenObjectRecognitionProcessor welke de IRecognitionProcessor interface implementeert. Deze processor zal gebruikt worden voor de uiteindelijke herkenning van gezichten. EigenObjectRecognitionProcessor is een singleton, er mag maar één instantie van zijn.</p>
+
+plaatje 5....
+
+<p>Wanneer beide objecten zijn aangemaakt en geïnitialiseerd wordt er een KinectFacialRecognitionEngine aangemaakt en geïnitialiseerd met deze 2 objecten in de constructor. KinectFacialRecognitionEngine is een engine die gebruikt maakt van de Kinect gezicht tracking en analyseert het gevonden gezicht op belangrijke componenten. Hoe dit precies werkt zal ik verder in dit document uitleggen.</p>
+
+plaatje6....
+
+<p>In de constructor van KinectFacialRecognitionEngine gebeurd heel veel, dingen die al uitgelegd zijn of al duidelijk zijn weggelaten. Per onderdeel zal uitgelegd worden wat het doet.</p>
+
+plaatje7....
+
+<ul>
+  <li>msReader wordt gezet met een nieuwe OpenMultiSourceFrameReader om verschillende source frames uit te kunnen lezen. Daarna geef je een event mee aan MulitSourceFrameArrived, welke wordt aangeroepen wanneer een frame uitgelezen word.</li>
+  <li>faceSource wordt geinitialiseerd met een nieuwe high-definition face frame source om de frame source van de kinect sensor op te vangen wanneer een gezicht gevonden is. Vervolgens zeg je nog tegen de faceSource dat de kwaliteit van de tracking (van het gezicht) hoog moet zijn.</li>
+  <li>Vervolgens wordt in de faceReader en nieuwe stream reader geopend vanuit de faceSource. Op het moment dat er dan een face frame aankomt bij de faceReader zal er een event afvuren genaamd FaceFrameArrived.</li>
+  <li>recognizerWorker wordt geinitialiseerd met een nieuwe BackgroundWorker, welke gebruikt word om meerder threads tegelijk te hebben. De DoWork event wordt continue aangeroepen wanneer recognizerWorker.RunWorkerAsync() aangeroepen word. RunWorkerCompleted wordt aangeroepn wanneer DoWork succesvol, gestopt, of gecrashed is.</li>
+</ul>
+
+<p>Nu duidelijk is wat de constructor van de KinectFacialRecognitionEngine class doet gaan we kijken naar de events die beschreven zijn in de constructor.</p>
+
+<p>MultiSourceFrameArrived event wordt aangeroepen wanneer een frame uitgelezen is. </p>
+
+plaatje8....
+
+<p>In deze methode werd de StarteWorkerIfReady methode aangeroepen, het enige wat die methode doet is aan de hand van booleans kijken of er geen ander proces gebruik maakt van de recognizerWorker BackgroundWorker. Met RunWorkerAsync wordt de worker opgestart.</p>
+
+plaatje9....
+
+<p>De recognizerWorker roept dan vervolgens in een aparte thread de methode RecognizerWorker_DoWork aangeroepen. </p>
+
+plaatje10....
+
+<p>In de processor.Process wordt daadwerkelijk het gezicht herkend, dit gebeurd als volgt:</p>
+
+plaatje11....
+
+plaatje12....
+
+<p>Gezichten worden herkend aan de hand van eigenDistance.</p>
+
+plaatje13....
+
+<p>Vervolgens kom je bij het algoritme hoe de eigenDistance, dit is een zeer ingewikkeld algoritme. Deze wordt helemaal uitgelegd bij openCV, waar deze library op gebaseerd is. <a href="http://docs.opencv.org/modules/contrib/doc/facerec/facerec_tutorial.html#algorithmic-description">OpenCv</a></p>

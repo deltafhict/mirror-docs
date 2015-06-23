@@ -11,7 +11,7 @@ $(document).ready(function(){
         }
         folded = !folded;
     });
-    
+
     $(".menuclose").click(function(){
         folded = !folded;
         $("nav").removeClass("active");
@@ -20,7 +20,7 @@ $(document).ready(function(){
         folded = !folded;
         $("nav").removeClass("active");
     });
-    
+
     //Handling the sub-menu's
     $(document).on('click', 'nav ul li', function(event){
         if (!$(event.target).closest('.submenu').length){

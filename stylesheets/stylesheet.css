@@ -272,8 +272,8 @@ img.image {
     padding: 2rem 0rem;
     margin-left: 10%;
     float: left;
-    font-size: 1.1rem; } 
-  .wrapper{    
+    font-size: 1.1rem; }
+  .wrapper{
     width: 100%;
     max-width: 74rem;
     margin: 0;
@@ -354,3 +354,17 @@ img.image {
 @media screen and (max-width: 42em) {
   .site-footer {
     font-size: 0.9rem; } }
+
+.leaphand {
+  float: right;
+  width: 50%;
+}
+
+.leapgestures img {
+  height: 10em;
+}
+
+.leapgestures {
+  float: left;
+  width: 33%;
+}

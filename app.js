@@ -16,6 +16,9 @@ app.config(function($routeProvider) {
 	.when('/kinect/bevindingen', {
 		templateUrl: 'pages/kinect/bevindingen.html'
 	})
+	.when('/kinect/gestures', {
+		templateUrl: 'pages/kinect/gestures.html'
+	})
 	.when('/leap/waarom', {
 		templateUrl: 'pages/leapmotion/waarom.html'
 	})

@@ -1,13 +1,11 @@
 
-<h1>Waarom gebruiken we Leap Motion?</h1>
+<h1>Bevindingen?</h1>
 
-<p>Na de Kinect uitvoerig getest te hebben kwamen we tot de conlusie dat deze voor onze doeleinden niet voldeed. Dit is terug te vinden in de Kinect documentatie.
-Na deze conclusie zijn we verder gaan kijken naar alternatieven.</p>
+<h3>Learning-curve</h3>
+<p>De learning-curve van leapmotion is niet erg groot, wat de leapmotion een interessant platform maakt voor het (snel) tot leven brengen van concepten.</p>
 
-<p>De Leap Motion viel ons op omdat het in eerste instantie al leek te voldoen aan onze eisen, waarbij de learning-curve niet erg groot leek te zijn. Ideaal, dus!</p>
+<h3>Checken van een Hand-object</h3>
+<p>Het checken van een Hand-object door middel van hand.valid retouneert altijd true. tenzij de hand undefined is, dan crash ie.</p>
 
-<p>Om niet te kort voor de bocht te zijn en een teleurstelling als bij de Kinect te voorkomen, hebben we, alvorens ermee aan de slag te gaan, gekeken hoe het in elkaar zat en wat dat voor ons zou betekenen.</p>
-
-<p>Daaruit bleek dat de API erg netjes en uitgebreid beschreven is, waar vanuit we besloten hebben er een snel POC voor op te zetten. Na dit uitgebreid getest te hebben, bleek het een stuk beter te werken dan de Kinect. Het werkte vaker (betrouwbaarder) en was simpel te configureren.</p>
-
-<p>Ook bij het uitwerken van de gestures bleek het opnieuw goed te werken en was het vrij gemakkelijk om het uit te werken.</p>
+<h3>Gesture wordt x aantal keer getriggerd tijdens een enkele gesture?</h3>
+<p>In onze eerste tests liepen we tegen het probleem dat tijdens het uitvoeren van een gesture de gesture random een x aantal keer getriggerd werd. Dit komt omdat de leap sdk een gesture blijft updaten tot deze geeindigd is, in onze code werd hierdoor de gesture telkens opnieuw herkend. Dit hebben we afgevangen door de gesture.state te controleren, als gesture.state == 'stop' wordt de gesture pas verder afgehandeld.</p>

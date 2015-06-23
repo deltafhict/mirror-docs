@@ -52,13 +52,13 @@ app.config(function($routeProvider) {
 	.when('/docs/project', {
 		templateUrl: 'pages/project.html'
 	})
-	.when('/docs/facerecognition', {
+	.when('/research/facerecognition', {
 		templateUrl: 'pages/research/facerecognition.html'
 	})
-	.when('/docs/eyetracking', {
+	.when('/research/eyetracking', {
 		templateUrl: 'pages/research/eyetracking.html'
 	})
-	.when('/docs/smartphone', {
+	.when('/research/smartphone', {
 		templateUrl: 'pages/research/smartphone.html'
 	})
 	.when('/uiux/testopzet', {

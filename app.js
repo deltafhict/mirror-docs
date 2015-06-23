@@ -22,6 +22,12 @@ app.config(function($routeProvider) {
 	.when('/leap/waarom', {
 		templateUrl: 'pages/leapmotion/waarom.html'
 	})
+	.when('/leap/hoewerkthet', {
+		templateUrl: 'pages/leapmotion/hoe_werkt_het.html'
+	})
+	.when('/leap/bevindingen', {
+		templateUrl: 'pages/leapmotion/bevindingen.html'
+	})
 	.when('/concepts/clothing', {
 		templateUrl: 'pages/clothing.html'
 	})

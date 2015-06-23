@@ -1,0 +1,80 @@
+<h1>Leap Motion - Hoe werkt het?</h1>
+
+<img src="images/leapmotion_sensor.png" class="image"/>
+
+<h3>Interaction area</h3>
+<hr />
+<p>Wat de hardware betreft werkt de Leap Motion vrij simpel. In de Leap Motion zitten twee camera’s en drie infrarode leds. Deze volgen infrarood licht wat buiten het visuele spectrum ligt; wij kunnen ze dus niet zien.</p>
+
+<img src="images/leapmotion_area.png" class="image"/>
+
+<p>De Leap Motion Controller heeft een bereik van ongeveer 25 millimeter tot ongeveer 600 millimeter boven het apparaat. In bovenstaande afbeelding is een duidelijke weergave van de interaction area van de Leap Motion Controller.</p>
+
+<p>De de data wordt doorgestuurd naar de computer (via USB), daarna komt de magie om de hoek kijken. De software volgt een aantal algoritmen om de data van de sensor te verwerken. Na een check op achtergrondobjecten en omgevingslicht, wordt de data geanalyseerd om een 3D-constructie te genereren. Vervolgens wordt de data verpakt in een mooie object geöriënteerde structuur om aan te roepen.</p>
+
+<h3>Frames?</h3>
+<hr />
+<p>De Leap Motion API geeft de gestructureerde data terug in de form van frames. Elke Frame object bevat een lijst van eniteiten zoals: een hand en vingers. Daarnaast bevat het frame objecten die herkende gestures en algemene bewegingen van de hand beschrijven.</p>
+
+<p>Het Frame object is als volgt opgebouwd:</p>
+<ul>
+  <li>Palm position and velocity</li>
+  <li>Direction and normal vectors</li>
+  <li>Orthonormal basis</li>
+  <img src="images/leapmotion_skeleton.png" class="leaphand" align="right"/>
+  <li>Fingers
+    <ul>
+      <li>Tip position and velocity</li>
+      <li>Direction vector</li>
+      <li>Orthonormal basis</li>
+      <li>Length and width</li>
+      <li>Bones
+        <ul>
+          <li>Joint positions</li>
+          <li>Othonormal basis</li>
+          <li>Length and width</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Arm
+    <ul>
+      <li>Wrist and elbow positions</li>
+      <li>Direction vector</li>
+      <li>Orthonormal basis</li>
+      <li>Length and width</li>
+    </ul>
+  </li>
+  <li>Pointable Tools
+    <ul>
+      <li>Tip position and velocity</li>
+      <li>Direction vector</li>
+      <li>Orthonormal basis</li>
+      <li>Length and width</li>
+  </li>
+</ul>
+
+<img src="images/leapmotion_frame.png" class="image"/>
+
+<h3>Motions and gestures</h3>
+<hr />
+<p>Om bewegingen en positionering te meten maakt de Leap Motion gebruik van een cartesisch coördinatenstelsel waar het begin vanaf het midden van de Leap Motion Controller wordt genomen. Waarbij de X- en Y-assen horizontaal zijn en de Y-as verticaal.</p>
+
+<img src="images/leapmotion_motions.png" class="image"/>
+
+<p>Naast het algemeen herkenen van beweginen kan de Leap Motion API gestures herkennen. Circle- swipe- en tap-gestures worden automatisch herkend en kunnen worden uitgelezen als objecten.</p>
+
+<div>
+  <div class="leapgestures">
+    <img src="images/leapmotion_circle.png"/>
+    <p>Circle</p>
+  </div>
+  <div class="leapgestures">
+    <img src="images/leapmotion_swipe.png"/>
+    <p>Swipe</p>
+  </div>
+  <div class="leapgestures">
+    <img src="images/leapmotion_tap.png"/>
+    <p>Tap</p>
+  </div>
+</div>

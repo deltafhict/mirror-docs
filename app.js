@@ -103,6 +103,9 @@ app.config(function($routeProvider) {
 	.when('/leap/bevindingen', {
 		templateUrl: 'pages/leapmotion/bevindingen.html'
 	})
+	.when('/leap/usertest', {
+		templateUrl: 'pages/leapmotion/usertest.html'
+	})
 
 	/*
 	 * UI/UX

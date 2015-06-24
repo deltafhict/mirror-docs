@@ -42,6 +42,9 @@ app.config(function($routeProvider) {
 	.when('/research/voice-calibration', {
 		templateUrl: 'pages/research/voice/voice-calibration.html'
 	})
+	.when('/research/perspectief', {
+		templateUrl: 'pages/research/perspectief.html'
+	})
 
 	/*
 	 * Documentatie

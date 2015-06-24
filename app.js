@@ -70,6 +70,9 @@ app.config(function($routeProvider) {
 	.when('/research/gestures', {
 		templateUrl: 'pages/research/gestures.html'
 	})
+	.when('/research/gestures-kinect', {
+		templateUrl: 'pages/research/gestures-kinect.html'
+	})
 	.when('/uiux/testopzet', {
 		templateUrl: 'pages/uiux/testopzet.html'
 	})

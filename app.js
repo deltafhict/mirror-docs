@@ -57,6 +57,13 @@ app.config(function($routeProvider) {
 	})
 
 	/*
+	 * Code Documentatie
+	 */
+	.when('/code-docs/interactions', {
+		templateUrl: 'pages/code-docs/interactions.html'
+	})
+
+	/*
 	 * Concepten
 	 */
 	.when('/concepts/clothing', {

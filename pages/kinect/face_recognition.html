@@ -1,0 +1,99 @@
+<h1>Face Recognition</h1>
+
+<h3>Testplan</h3>
+<p>Goal : Learn and recognize people's face.<br />
+What? : Kinect 2.0 Face Recognition software.<br />
+Why? : Unlock personal interface linked to face/person.</p>
+
+<p>The software is up and running on the mirror so the test can be as real as possible.</p>
+
+<img src="images/kinect/facerecognition1.jpg"  class="imagewidht33percent"/></li>
+<img src="images/kinect/facerecognition2.jpg" class="imagewidht33percent"/></li>
+<img src="images/kinect/facerecognition3.jpg" class="imagewidht33percent"/></li>
+
+<p>To start we taught the mirror the following faces:</p>
+<ul>
+	<li>Joris</li>
+	<li>Manon</li>
+	<li>Julien</li>
+	<li>Cas</li>
+	<li>Daan</li>
+	<li>Roel</li>
+	<li>Chris</li>
+	<li>Fabian</li>
+</ul>
+
+<p>You can see in this <a href="https://drive.google.com/file/d/0BzcPUwexmjaFWGdmTDBXbm1GclU/view">Video</a> how many pictures it takes for the Kinect to learn a face.
+But now when an "user" returnes the mirror doesnt recognize him/her. 3 pictures or 10 pictures stored doesn't seem to make a difference. </p>
+
+<h3>How to improve the recognition?</h3>
+<p>Test if it makes a difference how many people you store.</p>
+
+<strong>1-3 people stored:</strong>
+<p>
+Sunny<br />
+Cas<br />
+Manon<br />
+recognition functions: good<br />
+Test date: 27/05/15<br />
+<a href="https://drive.google.com/file/d/0BzcPUwexmjaFakxKRjI1QTNkZTg/view?usp=sharing">VIDEO</a>
+</p>
+
+<strong>4-6 people stored:</strong>
+<p>
+Sunny<br />
+Cas<br />
+Manon<br />
+Iris<br />
+Fons<br />
+Julien<br />
+recognition functions: medium<br />
+Test date: 27/05/15<br />
+<a href="https://drive.google.com/file/d/0BzcPUwexmjaFdHVwOXNZcnV2Q28/view?usp=sharing">VIDEO</a>
+</p>
+
+<strong>7-9 people stored:</strong>
+<p>
+Sunny<br />
+Cas<br />
+Manon<br />
+Iris<br />
+Roel<br />
+Tim<br />
+Joris<br />
+Thijs<br />
+recognition functions bad<br />
+Test date: 02/06/15<br />
+<a href="https://drive.google.com/file/d/0BzcPUwexmjaFSVJOai1hWUJSeG8/view?usp=sharing">VIDEO</a>
+</p>
+
+<p>Test if it makes a difference how many pictures from one person you store.<br />
+!! MAKE SURE PERSON MAINTAINS THE SAME POSITION WHILE LEARNING A FACE !!</p>
+
+<p>3 pictures > Front view mouth closed, left side view (Turn 30degrees), right side view (Turn 30degrees):<br />
+recognition functions good</p>
+
+<p>6 pictures > Front view mouth closed, left side view(Turn 30degrees), right side view(Turn 30degrees), front view looking upwards a little, front view looking downwards a little, front view with mouth opened.<br />
+recognition functions medium.</p>
+
+<p>Use the best results from above to set up a standard learning protocol and explain this to the end user with the use of an animation or video.</p>
+
+<h3>Conclusion</h3>
+<p>The more people you put into the database from the program, the less easy it recognises people. The people that are added will rarely be recognized by the kinect sensor. When they are, it only lasts for a short while (milliseconds). It seems to have a big influence whether a person has long hair, for example girls. The camera doesn't recognise the face as the same one which is stored in the database where the hair isn't in their face. </p>
+
+<p>The position of a person in the 3rd axle (depth axle) seems to a problem too, when a person is a little further away from the mirror than where they stood while teaching the mirror to recognize their face it wont recognize them.</p>
+
+<p>Up until this moment I don't think the face recognition is very reliable unless you make sure the user database contains 3 people or less and the learning template for the mirror needs to make sure the following points are included.</p>
+
+<ul>
+	<li>Person needs to maintain same spot in front of mirror at all times.</li>
+	<li>No changes of height and depth of the person in front of the mirror.</li>
+	<li>Woman can't have hair in their face (pony tail backwards is sufficient).</li>
+	<li>Only 3 profiles can be created (up to this point of testing).</li>
+	<li>No sudden change of facial hair.</li>
+</ul>
+
+<p>Next step is to set up a 3 picture 3 person profile for the technical part, this will be useful for further testing.</p>
+
+<p>*CHANGED THE THRESHOLD*<br />
+This doesn't seem to have any influence, we also changed the height of the kinect sensor but this doesn't make a difference either.</p>

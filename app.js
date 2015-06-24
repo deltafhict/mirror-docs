@@ -93,6 +93,9 @@ app.config(function($routeProvider) {
 	.when('/kinect/testresultaten-voice', {
 		templateUrl: 'pages/kinect/testresultaten_voice.html'
 	})
+	.when('/kinect/face-recognition', {
+		templateUrl: 'pages/kinect/face_recognition.html'
+	})
 
 	/*
 	 * Leap Motion

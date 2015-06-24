@@ -1,0 +1,22 @@
+<h1>Voice input threshold kalibreren</h1>
+<hr />
+
+<p>Uit onderzoek is gebleken dat de threshold waarde van de stem herkenning per persoon moet verschillen. Een oplossing hiervoor kan zijn dat de stem herkenning bij aanmelden van het profiel gekalibreerd wordt. Elk persoon heeft dan een gepersonaliseerde stem herkenning die is aangepast aan zijn of haar taalgebruik.</p>
+
+<img src="images/voice/calibrate1.png" class="image" />
+
+<p>Dit is een flowchart van deze functionaliteit. Het idee is dat de gebruiker een aantal keer bepaalde woorden uit spreekt. Wanneer deze worden herkend wordt de threshold verhoogt en vica versa. Uiteindelijk wordt de gewenste threshold bereikt en werkt de stem herkenning naar behoren.</p>
+
+<p>Wat de begin waarde is van de threshold moet nog getest worden, dit zal het gemiddelde zijn van een aantal testpersonen.</p>
+
+<p>Waarvoor moet uitgekeken worden is dat het kalibreer proces niet te lang duurt. Naar onze mening zou dit maximaal 1 minuut mogen duren.</p>
+
+<p>Het is nu zo dat de gebruiker een vooraf ingesteld woord een aantal keer moet uitspreken. Als het woord wordt herkend door het systeem wordt de threshold verhoogd, het mag immers wat strenger (hogere threshold betekent nauwkeuriger onderscheid tussen verschillende woorden). Als het woord niet wordt herkend gaat de threshold omlaag.</p>
+
+<p>In het geval van het verhogen van de threshold wordt er steeds thresholdStep bij de huidige threshold waarde opgeteld totdat het woord niet meer wordt herkend. De threshold is nu te hoog, dus hij moet weer wat lager, maar niet zo laag als eerst dus de thresholdStep moet iets kleiner worden. Als hij dan wel weer wordt herkend wordt de threshold weer een beetje hoger. Dit herhaalt zich totdat thresholdStep een dusdanig lage waarde heeft bereikt dat het geen nut heeft om nog verder te kalibreren - voor deze gebruiker is een passende threshold waarde bepaald.</p>
+
+<p>Deze methode kun je als volgt in een grafiek weergeven</p>
+
+<img src="images/voice/calibrate2.png" class="image" />
+
+<p>Waar de x-as de meetmomenten in een bepaalde tijd voorstelt, en de y-as de thresholdStep, die dus steeds kleiner wordt.</p>

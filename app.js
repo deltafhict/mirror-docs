@@ -39,6 +39,9 @@ app.config(function($routeProvider) {
 	.when('/research/voice-as-input', {
 		templateUrl: 'pages/research/voice/voice-as-input.html'
 	})
+	.when('/research/voice-calibration', {
+		templateUrl: 'pages/research/voice/voice-calibration.html'
+	})
 
 	/*
 	 * Documentatie

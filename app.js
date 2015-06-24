@@ -67,6 +67,9 @@ app.config(function($routeProvider) {
 	.when('/research/interface', {
 		templateUrl: 'pages/research/interface.html'
 	})
+	.when('/research/gestures', {
+		templateUrl: 'pages/research/gestures.html'
+	})
 	.when('/uiux/testopzet', {
 		templateUrl: 'pages/uiux/testopzet.html'
 	})

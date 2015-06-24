@@ -1,0 +1,50 @@
+<h1>Gestures</h1>
+<hr />
+
+<h3>Onderzoeksvragen Gestures</h3>
+
+<strong>Probleemstelling</strong>
+<p>Welke restricties zitten er aan gestures en waar moet je op letten voor een goede User Experience?</p>
+
+<strong>Onderzoeksvraag</strong>
+<p>Hoe kunnen gestures gebruikt worden, met als input-device de Kinect?</p>
+
+<strong>Deelvragen</strong>
+<ul>
+	­<li>Wat hebben we nodig qua hardware om een werkend prototype samen te stellen waarmee we gestures kunnen testen?</li>
+	­<li>Hoe moeten gestures ontworpen worden om tot een goede UX te komen en wat is er mogelijk met de Kinect?</li>
+</ul>
+
+<h3>Resultaten</h3>
+
+<p>Wat hebben we nodig qua hardware om een werken prototype samen te stellen waarmee we gestures kunnen testen?</p>
+
+<p>Een computer met Windows 8.1, een grafische kaart die directX11 aan kan en een USB 3.0 poort. Daarbij hebben we natuurlijk een Kinect nodig om aan te sluiten op de PC.</p>
+
+<p>In eerste instantie gebruikte we een desktop computer van de ISSD. Deze had geen USB 3.0 poorten dus die hebben we besteld. Na het aansluiten van deze componenten bleek de videokaart geen directX11 aan te kunnen. We moesten dus een alternatief vinden.</p>
+
+<p>Dit is een laptop geworden van de ISSD met USB 3.0 poorten en een geschikte grafische kaart. De laptop heeft alleen nog geen Windows 8.1, dus dit hebben we zelf moeten updaten. (in progress).</p>
+
+<p>Hoe moeten gestures ontworpen worden om tot een goede UX te komen en wat is er mogelijk met de Kinect?</p>
+
+<p>Microsoft heeft een soort ‘guidelines’ opgesteld over gestures voor de Kinect. Je hoeft je hier niet per se aan te houden, maar het zijn handige tips om in het achterhoofd te houden als je gestures gaat ontwerpen. Hier de voor ons meest relevante punten, naar mijn idee. Het bestand is echter zeker interessant om even door te lezen.</p>
+
+<ul>
+	­<li>Je kunt gebruik maken van gestures die mensen al kennen. Wat wordt er al gebruikt en wat kun je overnemen van bijvoorbeeld de smartphone (swipen, maar dan in de lucht?).</li>
+	­<li>Gestures die nieuw zijn voor mensen moeten aangeleerd worden, zodat ze vervolgens snel, comfortabel en accuraat uitgevoerd kunnen worden.</li>
+	<li>Als je een gesture ingewikkeld maakt, is er minder kans op een misinterpretatie door de kinect (de gesture is immers uniek). Als je een gesture simpel maakt, is het gemakkelijk uitvoerbaar maar kan het verward worden met andere gestures of getriggerd worden wanneer de gebruiker gewoon iets doet (zijn haar goed doen bijvoorbeeld). Hier moet je een goede middenweg in vinden.</li>
+	<li>Gebruik gestures waar ze voor bedoeld zijn. Als een andere manier van input een interactie makkelijker maakt, gebruik dat dan. </li>
+	<li>Negeer bewegingen die mensen maken die niet bedoeld zijn als interactie. Als iemand zijn tanden poetst, niest, of bijvoorbeeld iets wegveegt van zijn gezicht, moet dit niet geïnterpreteerd worden als een gesture. Dit is een van de moeilijkste challenges van gestures – aldus Microsoft. Hier zijn echter al built-in oplossingen voor. Engagement models, noemen ze het. Wellicht lost dit al veel op, hoewel we het natuurlijk in een andere context gebruiken dan waar ze dit voor gemaakt hebben.</li>
+	<li>Zorg dat de gesture bijna natuurlijk voelt, voor de taak die de gebruiker ermee wil vervullen. Ben consistent.</li>
+	<li>Gestures die herhaald dienen te worden, moeten soepel te herhalen zijn. Een flinke zwaai van rechts naar links is bijvoorbeeld niet erg gemakkelijk snel nog eens te doen, zonder uitgeput te raken. Zorg dat de gesture niet heel groot is, als de taak die erbij hoort maar klein is.</li>
+	<li>Zorg dat het einde van een gesture niet de volgende gesture in gang zet. Als je gesture rechts boven je hoofd eindigt, en een andere gesture daar begint, kan dit voor problemen zorgen.</li>
+	<li>Gestures moeten met linkerhand en rechterhand uitvoerbaar zijn. Maak ze dus niet alleen werkend voor je rechterhand. Zo kunnen mensen wisselen van hand als ze moe raken en kunnen zowel links- als rechtshandigen gebruikmaken van de gestures.</li>
+	<li>Last but not least: ITERATE. Testen dus! Houd je gebruiker in het hoofd bij het ontwerpen van gestures en zorg voor een goede UX. Dit kun je alleen doen als je potentiële gebruikers laat testen en de resultaten hiervan opneemt in je UX-design.</li>
+</ul>
+
+
+<h3>Conclusie & Aanbevelingen</h3>
+
+<p>Conclusie is dat we voor het ontwerpen van de gestures eerst moeten weten wat we nu eigenlijk gaan maken. We hebben echter wel goede richtlijnen gevonden waar we ons aan moeten houden tijdens het ontwerpen van de gestures.</p>
+
+<p>De laptop waarop we gaan prototypen is nog niet helemaal werkend. Drivers missen nu er windows 8.1 geïnstalleerd is, maar dit is slechts een kwestie van tijd. Als de drivers weer geïnstalleerd zijn dan zou hij werkend moeten zijn.</p>

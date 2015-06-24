@@ -36,6 +36,9 @@ app.config(function($routeProvider) {
 	.when('/research/gestures-kinect', {
 		templateUrl: 'pages/research/gestures-kinect.html'
 	})
+	.when('/research/voice-as-input', {
+		templateUrl: 'pages/research/voice/voice-as-input.html'
+	})
 
 	/*
 	 * Documentatie

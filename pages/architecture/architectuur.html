@@ -1,0 +1,198 @@
+<h1><a id="architectuur" class="anchor" href="#architectuur" aria-hidden="false"><span class="octicon octicon-link"></span></a>Architectuur</h2>
+
+<ul>
+  <li>
+    <a href="#inleiding">Inleiding</a>
+    <ul>
+      <li><a href="#context">Context</a></li>
+      <li><a href="#applicatie">Applicatie</a></li>
+      <li><a href="#niet-functionele-eisen">Niet-functionele eisen</a></li>
+      <ul>
+      	<li><a href="#beveiliging">Beveiliging</a></li>
+      	<li><a href="#uitbreidbaarheid">Uitbreidbaarheid</a></li>
+      	<li><a href="#hardware">Hardware</a></li>
+      </ul>
+      <li><a href="#doel-van-dit-document">Doel van dit document</a></li>
+    </ul>
+  </li>
+  <li><a href="#domeinmodel">Domeinmodel</a></li>
+  <ul>
+  	<li><a href="#klassendiagram">Klassendiagram</a></li>
+  </ul>
+  <li><a href="#persistentie">Persistentie</a></li>
+  <li><a href="#communicatie">Communicatie</a></li>
+  <ul>
+  	<li><a href="#json">JSON</a></li>
+  	<li><a href="#json-overdracht">JSON-overdracht</a></li>
+  </ul>
+  <li><a href="#realisatie-niet-functionele-eisen">Realisatie niet-functionele eisen</a></li>
+  <ul>
+  	<li><a href="#beveiliging-2">Beveiliging</a></li>
+  	<li><a href="#uitbreidbaarheid-2">Uitbreidbaarheid</a></li>
+  	<li><a href="#hardware-2">Hardware</a></li>
+  </ul>
+  <li><a href="#componenten">Componenten</a></li>
+  <ul>
+  	<li><a href="#services-per-component">Services per component</a></li>
+  	<li><a href="#packagestructuur">Packagestructuur</a></li>
+  </ul>
+  <li><a href="#deployment">Deployment</a></li>
+</ul>
+
+<h2><a id="inleiding" class="anchor" href="#inleiding" aria-hidden="false"><span class="octicon octicon-link"></span></a>Inleiding</h2>
+<hr />
+
+<h3><a id="context" class="anchor" href="#context" aria-hidden="false"><span class="octicon octicon-link"></span></a>Context</h3>
+<p>Om de communicatie van de gebruiker met de mirror soepel te laten verlopen, zal er een infrastructuur gerealiseerd moeten worden, met de gebruiker als uitgangspunt, om de werking goed te laten werken alsmede de ervaring van de gebruiker zo optimaal mogelijk te maken.</p>
+
+<h3><a id="applicatie" class="anchor" href="#applicatie" aria-hidden="false"><span class="octicon octicon-link"></span></a>Applicatie</h3>
+<p>De te bouwen applicatie en infrastructuur moet bovenstaand doel mogelijk maken. Men kan met de applicatie, samen met de Opus, te allen tijde aan de slag; mits de gebruiker een internetverbinding heeft.</p>
+
+<h3><a id="niet-functionele-eisen" class="anchor" href="#niet-functionele-eisen" aria-hidden="false"><span class="octicon octicon-link"></span></a>Niet-functionele eisen</h3>
+<p>Onderstaande niet-functionele eisen worden besproken in dit document:</p>
+
+<h4><a id="beveiliging" class="anchor" href="#beveiliging" aria-hidden="false"><span class="octicon octicon-link"></span></a>Beveiliging</h4>
+<p>De gehele applicatie moet betrouwbaar zijn; het moet niet mogelijk zijn de face recognition op meerdere mirrors te gebruiken, opdat dit lokaal wordt opgeslagen.</p>
+
+<h4><a id="uitbreidbaarheid" class="anchor" href="#uitbreidbaarheid" aria-hidden="false"><span class="octicon octicon-link"></span></a>Uitbreidbaarheid</h4>
+<p>De applicatie wordt ontwikkeld waarbij in gedachte wordt gehouden dat er in de toekomst meerdere uitbreidingen en deelapplicaties aan toegevoegd worden.</p>
+
+<h4><a id="hardware" class="anchor" href="#hardware" aria-hidden="false"><span class="octicon octicon-link"></span></a>Hardware</h4>
+<p>De software moet worden geïnstalleerd op een machine draaiende Windows 8 of hoger.</p>
+
+<h3><a id="doel-van-dit-document" class="anchor" href="#doel-van-dit-document" aria-hidden="false"><span class="octicon octicon-link"></span></a>Doel van dit document</h3>
+<p>Dit document verantwoordt de architectuur van de te ontwikkelen applicatie. Er worden zes aspecten van de architectuur beschreven: domeinmodel, persistentie, communicatie, realisatie van niet-functionele eisen, componenten en deployment.</p>
+
+<h2><a id="domeinmodel" class="anchor" href="#domeinmodel" aria-hidden="false"><span class="octicon octicon-link"></span></a>Domeinmodel</h2>
+<hr />
+
+<p>In dit model wordt de applicatiestructuur besproken aan de hand van een klassendiagram welke de modellen in de applicatie bespreekt. Deze modellen worden eronder toegelicht om de verhoudingen die ze moet elkaar hebben, te verduidelijken.</p>
+
+<h3><a id="klassendiagram" class="anchor" href="#klassendiagram" aria-hidden="false"><span class="octicon octicon-link"></span></a>Klassendiagram</h3>
+<img src="images/diagrams/classdiagram.png" />
+
+<p>Hierboven is het klassendiagram van het domein afgebeeld. Hierin worden de volgende klassen onderscheiden:</p>
+
+<ul>
+  <li>GestureRecognition. Deze handelt bepaalde gebaren af en stuurt deze door naar de NetworkCommunicator.</li>
+  <li>FaceRecognition. Deze handelt gezichtsherkenning af en stuurt deze, wanneer herkend, naar RecognizedPerson. Deze zorgt ervoor dat alleen de benodigde data naar de NetworkCommunicator gestuurd wordt.</li>
+  <li>RecognizedPerson: zie hierboven.</li>
+  <li>SpeechRecognition: Deze handelt spraakherkenning af en stuurt deze door naar de NetworkCommunicator.</li>
+  <li>Networkcommunicator: Deze zorgt ervoor dat een bericht naar de server toegezonden kan worden.</li>
+  <li>WSMessage: Deze zorgt ervoor dat gegenereerde informatie in het daarvoor bestemde formaat (JSON) verstuurd wordt.</li>
+</ul>
+
+<p>Let op: implementatie van de klassen is gedocumenteerd op de <a href="pages/code-docs/interactions.html" target="_blank">API-site</a>.</p>
+
+<h2><a id="persistentie" class="anchor" href="#persistentie" aria-hidden="false"><span class="octicon octicon-link"></span></a>Persistentie</h2>
+<hr />
+
+<p>Om ervoor te kunnen zorgen dat instellingen, acties en dingen als face recognition door het systeem onthouden kunnen worden, zal ervoor moeten worden gezorgd dat deze worden opgeslagen in de applicatie en / of de bijbehorende database.<p>
+
+<p>Wat dit specifiek inhoudt:</p>
+
+<ul>
+  <li>Er moet een bestand worden opgeslagen, een .pca, om gezichten opnieuw te kunnen herkennen en aan de juiste persoon te koppelen.</li>
+  <li>De informatie van een gebruiker moet in de database worden opgehaald, zodat deze gekoppeld kan worden aan de connecties die de gebruiker met de subapplicaties instelt.</li>
+  <li>De server zal te allen tijde draaien om te garanderen dat alle interacties worden doorgestuurd naar de applicatie, zodat deze afgehandeld kunnen worden.</li>
+</ul>
+
+<h2><a id="communicatie" class="anchor" href="#communicatie" aria-hidden="false"><span class="octicon octicon-link"></span></a>Communicatie</h2>
+<hr />
+
+<p>De communicatie tussen de backend en de frontend wordt geregeld met behulp van websockets.</p>
+
+<h3><a id="json" class="anchor" href="#json" aria-hidden="false"><span class="octicon octicon-link"></span></a>JSON</h3>
+<p>Deze websockets werken via een open poort op een lokaal netwerk. De informatie wordt als JSON verstuurd zodat deze gemakkelijk afgehandeld kan worden voor de programmeur.</p>
+
+<p>Het formaat wat voor deze JSON is opgesteld, is als volgend:</p>
+
+<pre><code>{
+    "app": "application name",
+    "type": "voice | gesture",
+    "action": "open | close",
+    "person": "unknown | personId",
+    "appointment": {
+        "title": "titel of appointment",
+        "desc": "description of appointment",
+        "datetime": 1432105259
+    }
+}</pre></code>
+
+<ul>
+  <li>app: beschrijft de naam van de subapplicatie waarop de actie wordt uitgevoerd.</li>
+  <li>type: beschrijft het type interactie welke gebruikt wordt om de actie uit te voeren.</li>
+  <li>action: beschrijft de actie die wordt uitgevoerd. Deze actie is specifiek voor de subapplicatie.</li>
+  <li>person: beschrijft de persoon die op dit moment met de mirror interacteert.</li>
+  <li>appointment / …: specifieke informatie voor een speciale actie.</li>
+</ul>
+
+<h3><a id="json-overdracht" class="anchor" href="#json-overdracht" aria-hidden="false"><span class="octicon octicon-link"></span></a>JSON-overdracht</h3>
+<img src="images/architectuur.png" class="image" />
+
+<p>Zoals op de afbeelding hierboven duidelijk is gemaakt, verloopt de overdracht van informatie zeer gestructureerd. Vanuit een bepaalde sensor, die gekoppeld is aan een socket, wordt een overdracht aan informatie naar de ontvangende socket van de server gestuurd.</p>
+
+<p>De server handelt dit vervolgens op een van de volgende manieren af:</p>
+
+<ul>
+  <li>de actie wordt omgezet in gebruikersfeedback en opent bijvoorbeeld een deelapplicatie op de view.</li>
+  <li>de actie wordt opgeslagen in de database.</li>
+  <li>een combinatie van bovenstaande punten vindt plaats.</li>
+</ul>
+
+<h2><a id="realisatie-niet-functionele-eisen" class="anchor" href="#realisatie-niet-functionele-eisen" aria-hidden="false"><span class="octicon octicon-link"></span></a>Realisatie niet-functionele eisen</h2>
+<hr />
+
+<h3><a id="beveiliging-2" class="anchor" href="#beveiliging-2" aria-hidden="false"><span class="octicon octicon-link"></span></a>Beveiliging</h3>
+<p>De mirror is beveiligd door een inlog te implementeren. Deze inlog wordt gedaan aan de hand van face recognition; dat betekent dat, vergelijkbaar met een vingerafdruk, op basis van uiterlijke kenmerken bepaald wordt wie er voor de mirror staat.</p>
+
+<p>Door de informatie van herkende personen op de 'mirror' op te slaan - lokaal dus - is het niet mogelijk om deze informatie te gebruiken op een andere spiegel. Deze informatie wordt dan ook nooit gedeeld met andere delen van het systeem.</p>
+
+<h3><a id="uitbreidbaarheid-2" class="anchor" href="#uitbreidbaarheid-2" aria-hidden="false"><span class="octicon octicon-link"></span></a>Uitbreidbaarheid</h3>
+<p>Door interactie van input en view te regelen via JSON, is dit zeer gemakkelijk uit te breiden. Er is opgesteld wat de generieke invulling en minimale eisen van deze informatie zijn - app, type, actie en persoon - maar de verdere specifieke invulling voor het aansturen van een deelapplicatie is vrij.</p>
+
+<h3><a id="hardware-2" class="anchor" href="#hardware-2" aria-hidden="false"><span class="octicon octicon-link"></span></a>Hardware</h4>
+<p>De hardware, een pc draaiende Windows 8, is beschikbaar gesteld om als server op de mirror te fungeren.</p>
+
+<h2><a id="componenten" class="anchor" href="#componenten" aria-hidden="false"><span class="octicon octicon-link"></span></a>Componenten</h3>
+<hr />
+
+<img src="images/diagrams/componentdiagram.png" />
+
+<p>Voor onderlinge realtime communicatie worden websockets gebruikt (zie Communicatie). De koppeling tussen componenten wordt gerealiseerd door de server, welke de (hardware)input koppelt met de view.</p>
+
+<h3><a id="services-per-component" class="anchor" href="#services-per-component" aria-hidden="false"><span class="octicon octicon-link"></span></a>Services per component</h3>
+<p>Services worden, zoals hieronder beschreven, gerealiseerd op de server:</p>
+
+<ul>
+  <li>per actie via de hardware wordt een verzoek naar de server gestuurd om deze af te handelen.</li>
+  <li>bij het inloggen aan de hand van face recognition regelt de face recognition dit af. Bij een geldige scan worden de gegevens van de gebruiker uit de database opgehaald.</li>
+  <li>de server doet waar nodig een verzoek op de database, zodat juiste informatie opgehaald en getoond kan worden.</li>
+</ul>
+
+<h3><a id="packagestructuur" class="anchor" href="#packagestructuur" aria-hidden="false"><span class="octicon octicon-link"></span></a>Packagestructuur</h3>
+<table>
+  <tr><td>UnitTests</td><td>Bevat de unit tests voor dit project</td></tr>
+  <tr><td>MirrorInteractions / Face</td><td>Bevat de Face Recognition-afhandeling</td></tr>
+  <tr><td>MirrorInteractions / Gestures</td><td>Bevat de Gesture-afhandeling</td></tr>
+  <tr><td>MirrorInteractions / Images</td><td>Bevat alle gebruikte afbeeldingen</td></tr>
+  <tr><td>MirrorInteractions / Models</td><td>Bevat de gebruikte modelklassen</td></tr>
+  <tr><td>MirrorInteractions / Network</td><td>Bevat de netwerkcommunicatie vanaf de applicatie</td></tr>
+  <tr><td>MirrorInteractions / NuiDatabase</td><td>Bevat de database voor herkende gezichten</td></tr>
+  <tr><td>MirrorInteractions / Properties</td><td>Bevat de applicatiesettings</td></tr>
+  <tr><td>MirrorInteractions / Speech</td><td>Bevat de spraakafhandeling</td></tr>
+</table>
+
+<h2><a id="deployment" class="anchor" href="#deployment" aria-hidden="false"><span class="octicon octicon-link"></span></a>Deployment</h3>
+<hr />
+
+<img src="images/diagrams/deploymentdiagram.png" />
+
+<p>Deployment van de mirror is hierboven afgebeeld middels een deploymentdiagram. De applicatie bestaat uit de volgende onderdelen:</p>
+
+<ul>
+  <li>Server. Hierop komt alle communicatie binnen en wordt deze afgehandeld.</li>
+  <li>Database: Hierop worden bepaalde gegevens opgeslagen, zoals persoonsgegevens en logging.</li>
+  <li>Client: Welke gekoppeld is aan de server; toont gegevens aan de gebruiker.</li>
+  <li>Hardware: De sensoren en hardwarecomponenten die via de server aan de mirror gekoppeld zijn.</li>
+</ul>

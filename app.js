@@ -47,6 +47,13 @@ app.config(function($routeProvider) {
 	})
 
 	/*
+	 * Architectuur
+	 */
+	.when('/architecture/architectuur', {
+		templateUrl: 'pages/architecture/architectuur.html'
+	})
+
+	/*
 	 * Documentatie
 	 */
 	.when('/docs/product', {

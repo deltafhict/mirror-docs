@@ -361,19 +361,15 @@ img.image {
 
 .leaphand {
   float: right;
-  width: 50%;
-}
+  width: 50%; }
 
 .leapgestures img {
-  height: 10em;
-}
+  height: 10em; }
 
 .leapgestures {
   float: left;
-  width: 33%;
-}
+  width: 33%; }
 
-.imagewidht33percent {
+.imagewidth33percent {
   float: left;
-  width: 33%;
-}
+  width: 33%; }

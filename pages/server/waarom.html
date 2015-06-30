@@ -1,0 +1,31 @@
+<h1>Waarom gebruiken we NodeJS?</h1>
+<hr />
+
+<h3>Node.JS</h3>
+<p>“Node.js® is a platform built on Chrome's JavaScript runtime for easily building fast, scalable network applications. Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient, perfect for data-intensive real-time applications that run across distributed devices.”</p>
+
+<p>Behalve het feit dat je ongeveer alles kan maken wat je voor je server kan verzinnen met Node.js omdat er veel libraries voor zijn, en het wordt al jarenlang extensief ontwikkeld, is een belangrijke afweging om voor Node.js te kiezen geweest dat het projectteam voor ongeveer 75% bestaat uit M-studenten die allen kennis hebben van javascript, de taal waarmee je Node.js geprogrammeert. Wij technology studenten zullen ons voornamelijk bezighouden met de sensoriek en wat daar bij komt kijken, en zo kunnen we het werk goed verdelen.</p>
+
+<h3>Waarom past Node.js goed bij ons project?</h3>
+<p><em>“Node is single-threaded and uses a concurrency model based on an event loop. It is non-blocking, so it doesn't make the program wait, but instead it registers a callback and lets the program continue.</em></p>
+
+<p>This means it can handle concurrent operations without multiple threads of execution, so it can scale pretty well. In a sequential language such as PHP, in order to get the HTML content of a page you would do the following:</p>
+
+<pre><code>$response = file_get_contents("http://example.com");
+print_r($response);</code></pre>
+
+
+<p>In Node, you register some callbacks instead:</p>
+
+<pre><code>var http = require('http');
+http.request({ hostname: 'example.com' }, function(res) {
+  res.setEncoding('utf8');
+  res.on('data', function(chunk) {
+    console.log(chunk);
+  });
+}).end();</code></pre>
+
+<p>There are two big differences between the two implementations</p>
+
+<p>Node allows you to perform other tasks while waiting to be notified when the response is available.
+The Node application is not buffering data into memory, but instead it's outputing it chunk-by-chunk.</p>

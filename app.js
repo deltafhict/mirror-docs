@@ -131,6 +131,19 @@ app.config(function($routeProvider) {
 	})
 
 	/*
+	 * Server
+	 */
+	.when('/server/waarom', {
+		templateUrl: 'pages/server/waarom.html'
+	})
+	.when('/server/bevindingen', {
+		templateUrl: 'pages/server/bevindingen.html'
+	})
+	.when('/server/setup', {
+		templateUrl: 'pages/server/setup.html'
+	})
+
+	/*
 	 * UI/UX
 	 */
 	.when('/uiux/testopzet', {

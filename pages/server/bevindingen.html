@@ -1,0 +1,10 @@
+<h1>Bevindingen</h1>
+<hr />
+
+<h3>Problemen &amp; bijbehorende oplossingen tijdens het ontwikkelen van de server</h3>
+
+<p>Hoe gaan we de frontend aan de server koppelen, zodat we binnenkomende data kunnen verwerken en indien nodig de view aanpassen aan de hand van de nieuwe data?</p>
+
+<p>Omdat de frontend en de server als het ware langs elkaar af lopen (de files die ze gebruiken staan los van elkaar - de browser start de frontend op en via de terminal start je de server op) hadden we moeite met het bedenken van een oplossing hoe we vanuit de server de frontend konden aanspreken.</p>
+
+<p>Als oplossing hiervoor hebben we sockets gebruikt. Het is zo gemaakt dat als op de server data binnenkomt en aan de hand daarvan moet er iets verwerkt worden op de frontend, stuurt de server via een socket verbinding een JSON string naar de frontend, die hem op zijn beurt ontvangt via een socket.</p>

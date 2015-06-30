@@ -28,6 +28,10 @@ Omdat het systeem netjes verdeeld is in aparte delen, is het makkelijker om elk 
 <p>Alle communicatie tussen de sensoren en de server zal in JSON gebeuren. Hierbij wordt gebruik gemaakt van websockets om de JSON naar de server te sturen.
 Het default adres van de websocket waarnaar de JSON gestuurd moet worden is <code>ws://127.0.0.1:1337</code>.
 De server draait (eveneens) op <code>127.0.0.1</code>, dit omdat de sensoren aan dezelfde PC gekoppeld zijn als de server.
+</p>
+<p>
+Alle velden moeten aanwezig zijn, alleen <code>appointment</code> mag <code>null</code> zijn.
+
 Hieronder zie je een voorbeeld van wat de sensoren naar de server sturen:
 </p>
 <pre><code>{
@@ -39,6 +43,24 @@ Hieronder zie je een voorbeeld van wat de sensoren naar de server sturen:
         "title": "title of appointment",
         "desc": "description of appointment",
         "datetime": 1432105259
+    }
+}</pre></code>
+<p>Een voorbeeld van JSON die verstuurd kan worden:</p>
+<pre><code>{
+    "app": "agenda",
+    "type": "voice",
+    "action": "open",
+    "person": "unknown",
+    "appointment": null
+    }
+}</pre></code>
+<p>Of:</p>
+<pre><code>{
+    "app": "weather",
+    "type": "gesture",
+    "action": "close",
+    "person": "personId",
+    "appointment": null
     }
 }</pre></code>
 

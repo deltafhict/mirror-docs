@@ -30,9 +30,8 @@ Het default adres van de websocket waarnaar de JSON gestuurd moet worden is <cod
 De server draait (eveneens) op <code>127.0.0.1</code>, dit omdat de sensoren aan dezelfde PC gekoppeld zijn als de server.
 </p>
 <p>
-Alle velden moeten aanwezig zijn, alleen <code>appointment</code> mag <code>null</code> zijn.
-
-Hieronder zie je een voorbeeld van wat de sensoren naar de server sturen:
+Voor de communicatie van de sensoren naar de server wordt de onderstaande JSON gebruikt.
+De velden <code>app</code>, <code>type</code> en <code>action</code> zijn verplicht, de andere velden zijn optioneel.
 </p>
 <pre>
   <code>
@@ -50,7 +49,19 @@ Hieronder zie je een voorbeeld van wat de sensoren naar de server sturen:
   </code>
 </pre>
 
-<p>Een voorbeeld van JSON die verstuurd kan worden:</p>
+<p>Een voorbeeld van JSON voor het opstarten van de mirror:</p>
+
+<pre>
+  <code>
+  {
+    "app": "opus",
+    "type": "voice",
+    "action": "on"
+  }
+  </code>
+</pre>
+
+<p>Een voorbeeld van JSON voor het openen van de agenda:</p>
 
 <pre>
   <code>
@@ -64,7 +75,7 @@ Hieronder zie je een voorbeeld van wat de sensoren naar de server sturen:
   </code>
 </pre>
 
-<p>Of:</p>
+<p>Een voorbeeld van JSON voor het sluiten van het weer:</p>
 
 <pre>
   <code>
@@ -79,7 +90,7 @@ Hieronder zie je een voorbeeld van wat de sensoren naar de server sturen:
 </pre>
 
 <h3>User-database</h3>
-<p>Voor de communicatie tussen de user-database en de server wordt de onderstaande JSON gebruikt. De velden <code>app</code>, <code>action</code> en <code>person</code> zijn verplicht, de andere zijn optioneel.</p>
+<p>Voor de communicatie tussen de user-database en de server wordt de onderstaande JSON gebruikt. De velden <code>app</code>, <code>action</code> en <code>person</code> zijn verplicht, de andere velden zijn optioneel.</p>
 <pre>
   <code>
   {

@@ -34,7 +34,9 @@ Alle velden moeten aanwezig zijn, alleen <code>appointment</code> mag <code>null
 
 Hieronder zie je een voorbeeld van wat de sensoren naar de server sturen:
 </p>
-<pre><code>{
+<pre>
+  <code>
+  {
     "app": "application name",
     "type": "voice | gesture",
     "action": "open | close",
@@ -44,23 +46,64 @@ Hieronder zie je een voorbeeld van wat de sensoren naar de server sturen:
         "desc": "description of appointment",
         "datetime": 1432105259
     }
-}</pre></code>
+  }
+  </code>
+</pre>
+
 <p>Een voorbeeld van JSON die verstuurd kan worden:</p>
-<pre><code>{
+
+<pre>
+  <code>
+  {
     "app": "agenda",
     "type": "voice",
     "action": "open",
     "person": "unknown",
     "appointment": null
-}</pre></code>
+  }
+  </code>
+</pre>
+
 <p>Of:</p>
-<pre><code>{
+
+<pre>
+  <code>
+  {
     "app": "weather",
     "type": "gesture",
     "action": "close",
     "person": "personId",
     "appointment": null
-}</pre></code>
+  }
+  </code>
+</pre>
+
+<h3>User-database</h3>
+<p>Voor de communicatie tussen de user-database en de server wordt de onderstaande JSON gebruikt. De velden <code>app</code>, <code>action</code> en <code>person</code> zijn verplicht, de andere zijn optioneel.</p>
+<pre>
+  <code>
+  {
+    "app": "application name",
+    "action": "open | close",
+    "person": 0 | personId,
+    "weatherLocation": "weather location"
+  }
+  </code>
+</pre>
+
+<p>Een voorbeeld om voor het ophalen van het weer:</p>
+
+<pre>
+  <code>
+    {
+      "app": "weather",
+      "action": "open",
+      "person": 1,
+      "weatherLocation": "Nederweert"
+    }
+  </code>
+</pre>
+
 
 <h2><a id="codedocumentatie" class="anchor" href="#codedocumentatie" aria-hidden="false"><span class="octicon octicon-link"></span></a>Documentatie van code</h2>
 <hr  />
